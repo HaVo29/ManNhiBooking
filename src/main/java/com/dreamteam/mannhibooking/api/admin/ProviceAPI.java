@@ -12,21 +12,21 @@ import com.dreamteam.mannhibooking.dto.ProviceDTO;
 import com.dreamteam.mannhibooking.service.ProviceService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/provice")
 public class ProviceAPI {
 	
 	@Autowired
 	private ProviceService proviceService ;
 	
-	@PostMapping(value = "/provice")
+	@PostMapping
 	public ProviceDTO createNew(@RequestBody ProviceDTO model){
-		return proviceService.save(model);
+		return proviceService.create(model);
 	}
 	
-	@PutMapping(value = "/provice/{id}")
+	@PutMapping(value = "/{id}")
 	public ProviceDTO updateNew(@RequestBody ProviceDTO model, @PathVariable("id") long id){
 		model.setId(id);
-		return proviceService.save(model);
+		return proviceService.update(model.getId(),model);
 	}
 	
 	/*

@@ -2,6 +2,8 @@ package com.dreamteam.mannhibooking.entity;
 
 import java.util.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -28,7 +30,8 @@ public abstract class BaseEntity {
 	@CreatedBy
 	private String createdBy;
 	
-	@Column(name = "createddate")
+	@CreationTimestamp
+	@Column(name = "createddate" , nullable = false, updatable = false)
 	@CreatedDate
 	private Date createdDate;
 	
@@ -36,7 +39,8 @@ public abstract class BaseEntity {
 	@LastModifiedBy
 	private String modifiedBy;
 	
-	@Column(name = "modifieddate")
+	@UpdateTimestamp
+	@Column(name = "modifieddate", nullable = false)
 	@LastModifiedDate
 	private Date modifiedDate;
 	
