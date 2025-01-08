@@ -19,14 +19,21 @@ public class ProviceAPI {
 	private ProviceService proviceService ;
 	
 	@PostMapping
-	public ProviceDTO createNew(@RequestBody ProviceDTO model){
+	public ProviceDTO createProvice(@RequestBody ProviceDTO model){
 		return proviceService.create(model);
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ProviceDTO updateNew(@RequestBody ProviceDTO model, @PathVariable("id") long id){
+	public ProviceDTO updateProvice(@RequestBody ProviceDTO model, @PathVariable("id") long id){
 		model.setId(id);
 		return proviceService.update(model.getId(),model);
+	}
+	
+	@PutMapping(value = "/delete/{id}")
+	public void updateValidFlagProvice(@RequestBody ProviceDTO model, @PathVariable("id") long id){
+		model.setId(id);
+       
+        proviceService.deleteProvice(model.getId());
 	}
 	
 	/*

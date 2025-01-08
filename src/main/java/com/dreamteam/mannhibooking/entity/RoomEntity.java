@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,7 +29,11 @@ public class RoomEntity extends BaseEntity {
 	
 	@Column(name = "validflag")
 	private Integer validflag;
-
+	
+	@ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private HotelEntity hotel;
+	
 	public String getName() {
 		return name;
 	}
@@ -74,6 +80,14 @@ public class RoomEntity extends BaseEntity {
 
 	public void setValidflag(Integer validflag) {
 		this.validflag = validflag;
+	}
+
+	public HotelEntity getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(HotelEntity hotel) {
+		this.hotel = hotel;
 	}
 	
 }

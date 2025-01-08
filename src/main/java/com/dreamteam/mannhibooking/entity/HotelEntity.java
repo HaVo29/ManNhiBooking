@@ -1,11 +1,14 @@
 package com.dreamteam.mannhibooking.entity;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -54,6 +57,9 @@ public class HotelEntity extends BaseEntity {
 	@ManyToOne
     @JoinColumn(name = "provice_id")
     private ProviceEntity provice;
+	
+	@OneToMany(mappedBy = "hotel",targetEntity = RoomEntity.class)
+	private List<RoomEntity> RoomList = new ArrayList<>();
 
 	public String getName() {
 		return name;
@@ -165,6 +171,14 @@ public class HotelEntity extends BaseEntity {
 
 	public void setProvice(ProviceEntity provice) {
 		this.provice = provice;
+	}
+
+	public List<RoomEntity> getRoomList() {
+		return RoomList;
+	}
+
+	public void setRoomList(List<RoomEntity> roomList) {
+		RoomList = roomList;
 	}
 	
 	

@@ -1,7 +1,11 @@
 package com.dreamteam.mannhibooking.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,6 +20,9 @@ public class ProviceEntity extends BaseEntity {
 	
 	@Column(name = "code")
 	private String code;
+	
+	@OneToMany(mappedBy = "provice",targetEntity = HotelEntity.class)
+	private List<HotelEntity> HotelList = new ArrayList<>();
 
 	public String getName() {
 		return name;
@@ -39,6 +46,14 @@ public class ProviceEntity extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public List<HotelEntity> getHotelList() {
+		return HotelList;
+	}
+
+	public void setHotelList(List<HotelEntity> hotelList) {
+		HotelList = hotelList;
 	}
 	
 }

@@ -30,7 +30,7 @@ public class UserEntity extends BaseEntity {
 	@Column(name = "validflag")
 	private Integer validflag;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, targetEntity = RoleEntity.class)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userid"), 
 				inverseJoinColumns = @JoinColumn(name = "roleid"))
 	private List<RoleEntity> roles = new ArrayList<>();

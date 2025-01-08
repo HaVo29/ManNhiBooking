@@ -65,13 +65,12 @@ public class ProviceServiceImpl implements ProviceService {
     @Override
     public void deleteProvice(Long id) {
     	
-    	proviceRepository.updateProviceByID("2",id);
+    	proviceRepository.updateProviceByID(2,id);
     }
     
     @Override
     public void deleteListProvice(List<Long> listId) {
-    	
-    	proviceRepository.updateNewsList(listId,"2");
+    	proviceRepository.updateNewsList(listId,2);
     }
     
 	
