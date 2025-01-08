@@ -25,7 +25,7 @@ public interface HotelRepository extends JpaRepository<HotelEntity, Long> {
 	 
 	 @Transactional
 	 @Modifying
-	 @Query("UPDATE HotelEntity n SET n.validflag = :validflag WHERE n.id IN :idList")
-	 void updateHotelList(List<Long> idList,int validflag);
+	 @Query(value ="UPDATE HOTELPF SET validflag = ?1 WHERE id IN :idList",nativeQuery = true)
+	 void updateHotelList(int validflag,List<Long> idList);
 	 
 }

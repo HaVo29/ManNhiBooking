@@ -31,7 +31,7 @@ public class RoomEntity extends BaseEntity {
 	private Integer validflag;
 	
 	@ManyToOne
-    @JoinColumn(name = "hotel_id")
+    @JoinColumn(name = "hotel_id", nullable = false)
     private HotelEntity hotel;
 	
 	public String getName() {

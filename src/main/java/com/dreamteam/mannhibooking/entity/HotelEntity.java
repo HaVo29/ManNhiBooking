@@ -6,6 +6,7 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -30,7 +31,7 @@ public class HotelEntity extends BaseEntity {
 	@Column(name = "addr04", columnDefinition = "NVARCHAR(255)")
 	private String addr04;
 	
-	@Column(name = "detail")
+	@Column(name = "detail", columnDefinition = "NVARCHAR(255)")
 	private String detail ;
 	
 	@Column(name = "opentime")
@@ -54,8 +55,8 @@ public class HotelEntity extends BaseEntity {
 	@Column(name = "displayflag")
 	private Integer displayFlag;
 	
-	@ManyToOne
-    @JoinColumn(name = "provice_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "provice_id", nullable = false)
     private ProviceEntity provice;
 	
 	@OneToMany(mappedBy = "hotel",targetEntity = RoomEntity.class)

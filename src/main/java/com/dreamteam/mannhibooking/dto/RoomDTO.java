@@ -10,6 +10,8 @@ public class RoomDTO extends AbstractDTO<RoomDTO> {
 	private BigDecimal price;
 	private Integer displayFlag;
 	private Integer validflag;
+	private Long hotelId;
+	
 	public String getName() {
 		return name;
 	}
@@ -45,6 +47,12 @@ public class RoomDTO extends AbstractDTO<RoomDTO> {
 	}
 	public void setValidflag(Integer validflag) {
 		this.validflag = validflag;
+	}
+	public Long getHotelId() {
+		return hotelId;
+	}
+	public void setHotelId(Long hotelId) {
+		this.hotelId = hotelId;
 	}
 	
 }

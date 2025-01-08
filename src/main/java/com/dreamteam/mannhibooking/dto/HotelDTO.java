@@ -17,6 +17,8 @@ public class HotelDTO extends AbstractDTO<HotelDTO> {
     private LocalTime  checkOut;
 	private Integer validFlag;
 	private Integer displayFlag;
+	private Long proviceId ;
+	
 	public String getName() {
 		return name;
 	}
@@ -94,6 +96,12 @@ public class HotelDTO extends AbstractDTO<HotelDTO> {
 	}
 	public void setDisplayFlag(Integer displayFlag) {
 		this.displayFlag = displayFlag;
+	}
+	public long getProviceId() {
+		return proviceId;
+	}
+	public void setProviceId(long proviceId) {
+		this.proviceId = proviceId;
 	}
 	
 }

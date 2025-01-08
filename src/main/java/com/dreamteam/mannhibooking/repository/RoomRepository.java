@@ -11,21 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dreamteam.mannhibooking.entity.HotelEntity;
 import com.dreamteam.mannhibooking.entity.ProviceEntity;
+import com.dreamteam.mannhibooking.entity.RoomEntity;
 
 
 @Repository
-public interface RoomRepository extends JpaRepository<HotelEntity, Long> {
+public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
 
-	 Optional<HotelEntity> findById(Long id);
+	 Optional<RoomEntity> findById(Long id);
 	 
 	 @Transactional
 	 @Modifying
-	 @Query(value ="UPDATE HOTELPF SET validflag = ?1 WHERE id = ?2 ",nativeQuery = true)
-	 void updateHotelByID(int validflag,Long id);
+	 @Query(value ="UPDATE ROOMPF SET validflag = ?1 WHERE id = ?2 ",nativeQuery = true)
+	 void updateRoomByID(int validflag,Long id);
 	 
 	 @Transactional
 	 @Modifying
-	 @Query("UPDATE HotelEntity n SET n.validflag = :validflag WHERE n.id IN :idList")
-	 void updateHotelList(List<Long> idList,int validflag);
+	 @Query(value ="UPDATE ROOMPF SET validflag = ?1 WHERE id IN :idList",nativeQuery = true)
+	 void updateRoomList(int validflag,List<Long> idList);
 	 
 }
