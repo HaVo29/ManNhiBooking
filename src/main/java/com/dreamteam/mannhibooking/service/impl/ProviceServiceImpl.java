@@ -6,13 +6,16 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dreamteam.mannhibooking.dto.ProviceDTO;
+import com.dreamteam.mannhibooking.dto.ProviceSumaryDTO;
 import com.dreamteam.mannhibooking.entity.ProviceEntity;
 import com.dreamteam.mannhibooking.repository.ProviceRepository;
 import com.dreamteam.mannhibooking.service.ProviceService;
 
 @Service
+@Transactional
 public class ProviceServiceImpl implements ProviceService {
 	
 	@Autowired
@@ -40,7 +43,7 @@ public class ProviceServiceImpl implements ProviceService {
 	@Override
 	public ProviceDTO create(ProviceDTO proviceDTO) {
 		// Chuyển đổi DTO thành Entity
-		ProviceEntity proviceEntity = modelMapper.map(proviceDTO, ProviceEntity.class);;
+		ProviceEntity proviceEntity = modelMapper.map(proviceDTO, ProviceEntity.class);
 		 // Lưu hoặc cập nhật đối tượng vào cơ sở dữ liệu
 		ProviceEntity saveEntity = proviceRepository.save(proviceEntity);
 
@@ -70,8 +73,13 @@ public class ProviceServiceImpl implements ProviceService {
     
     @Override
     public void deleteListProvice(List<Long> listId) {
-    	proviceRepository.updateNewsList(listId,2);
+    	proviceRepository.updateProviceList(listId,2);
     }
     
+    @Override
+    public ProviceSumaryDTO getNameById(Long id) {
+    	ProviceSumaryDTO provice = proviceRepository.findNamebyID(id);
+        return provice;
+    }
 	
 }

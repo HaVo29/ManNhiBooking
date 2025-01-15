@@ -9,9 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dreamteam.mannhibooking.entity.HotelEntity;
-import com.dreamteam.mannhibooking.entity.ProviceEntity;
 import com.dreamteam.mannhibooking.entity.RoomEntity;
+import com.dreamteam.mannhibooking.projections.DetailRoom;
 
 
 @Repository
@@ -29,4 +28,9 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
 	 @Query(value ="UPDATE ROOMPF SET validflag = ?1 WHERE id IN :idList",nativeQuery = true)
 	 void updateRoomList(int validflag,List<Long> idList);
 	 
+	 DetailRoom findDetailRoomById(Long id);// Dùng interface projection
+	 
+	// Hoặc dùng trong query methods
+	    @Query("select u.name as name, u.totalPeople as totalPeople,u.totalBed as totalBed  ,u.price as price from RoomEntity u ")
+	 List<DetailRoom> findDetailRoooms();
 }

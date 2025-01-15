@@ -18,14 +18,15 @@ public interface HotelRepository extends JpaRepository<HotelEntity, Long> {
 
 	 Optional<HotelEntity> findById(Long id);
 	 
-	 @Transactional
 	 @Modifying
 	 @Query(value ="UPDATE HOTELPF SET validflag = ?1 WHERE id = ?2 ",nativeQuery = true)
 	 void updateHotelByID(int validflag,Long id);
 	 
-	 @Transactional
 	 @Modifying
 	 @Query(value ="UPDATE HOTELPF SET validflag = ?1 WHERE id IN :idList",nativeQuery = true)
 	 void updateHotelList(int validflag,List<Long> idList);
+	 
+	 @Query(value ="SELECT * FROM HOTELPF  WHERE provice_id = ?1",nativeQuery = true)
+	 List<HotelEntity> getListHotelByProviceID(Long id);
 	 
 }

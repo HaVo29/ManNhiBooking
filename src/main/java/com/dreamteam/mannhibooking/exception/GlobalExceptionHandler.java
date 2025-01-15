@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
-	@ExceptionHandler(HotelNotFoundException.class)
-    public ResponseEntity<Map<String, Object>> handleCategoryNotFoundException(HotelNotFoundException ex) {
+	@ExceptionHandler(ModelNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleModelNotFoundException(ModelNotFoundException ex) {
         Map<String, Object> response = new HashMap<>();
         response.put("timestamp", LocalDateTime.now());
         response.put("message", ex.getMessage());

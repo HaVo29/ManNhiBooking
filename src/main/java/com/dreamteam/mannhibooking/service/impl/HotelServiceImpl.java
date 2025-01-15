@@ -6,17 +6,19 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dreamteam.mannhibooking.dto.HotelDTO;
 import com.dreamteam.mannhibooking.entity.HotelEntity;
 import com.dreamteam.mannhibooking.entity.ProviceEntity;
-import com.dreamteam.mannhibooking.exception.HotelNotFoundException;
+import com.dreamteam.mannhibooking.exception.ModelNotFoundException;
 import com.dreamteam.mannhibooking.repository.HotelRepository;
 import com.dreamteam.mannhibooking.repository.ProviceRepository;
 import com.dreamteam.mannhibooking.repository.RoomRepository;
 import com.dreamteam.mannhibooking.service.HotelService;
 
 @Service
+@Transactional
 public class HotelServiceImpl implements HotelService {
 	
 	@Autowired
@@ -35,7 +37,7 @@ public class HotelServiceImpl implements HotelService {
 	public HotelDTO update(Long id,HotelDTO hotelDTO) {
 		
 		HotelEntity hotelEntity = hotelRepository.findById(id)
-	                .orElseThrow(() -> new HotelNotFoundException("HotelRepository not found with id: " + id));
+	                .orElseThrow(() -> new ModelNotFoundException("HotelRepository not found with id: " + id));
 
 		// Update fields
 		hotelEntity.setName(hotelDTO.getName());
@@ -75,7 +77,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public HotelDTO getHotelById(Long id) {
     	HotelEntity hotelEntity = hotelRepository.findById(id)
-                .orElseThrow(() -> new HotelNotFoundException("Hotel with ID " + id + " not found"));
+                .orElseThrow(() -> new ModelNotFoundException("Hotel with ID " + id + " not found"));
     	
 //    	ProviceEntity provice = proviceRepository.findById(hotelEntity.getProvice().getId())
 //    			.orElseThrow(() -> new RuntimeException("News not found"));;
@@ -86,7 +88,7 @@ public class HotelServiceImpl implements HotelService {
     public List<HotelDTO> getAllHotel() {
         List<HotelEntity> hotelList = hotelRepository.findAll();
         return hotelList.stream()
-                .map(news -> modelMapper.map(news, HotelDTO.class))
+                .map(hotels -> modelMapper.map(hotels, HotelDTO.class))
                 .collect(Collectors.toList());
     }
     
@@ -99,6 +101,14 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public void deleteListHotel(List<Long> listId) {
     	hotelRepository.updateHotelList(2,listId);
+    }
+    
+    @Override
+    public List<HotelDTO> getListHotelByProviceId(Long id) {
+        List<HotelEntity> hotelList = hotelRepository.getListHotelByProviceID(id);
+        return hotelList.stream()
+                .map(hotels -> modelMapper.map(hotels, HotelDTO.class))
+                .collect(Collectors.toList());
     }
     
 	
