@@ -18,16 +18,15 @@ import com.dreamteam.mannhibooking.service.ProviceService;
 @RequestMapping("/hotel")
 public class HotelController {
 
-	@Autowired
 	private ProviceService proviceService ;
 	
-	@Qualifier("HotelServiceImpl")
 	private HotelService hotelService  ;
 	
-//	public HotelController (HotelService hotelService,ProviceService proviceService) {
-//		this.hotelService = hotelService;
-//		this.proviceService = proviceService;
-//	}
+	@Autowired
+	public HotelController (HotelService hotelService,ProviceService proviceService) {
+		this.hotelService = hotelService;
+		this.proviceService = proviceService;
+	}
 	
 	@PostMapping
 	public HotelDTO createHotel(@RequestBody HotelDTO model){

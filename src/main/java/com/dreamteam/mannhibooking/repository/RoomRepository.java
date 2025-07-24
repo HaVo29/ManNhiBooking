@@ -31,6 +31,6 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
 	 DetailRoom findDetailRoomById(Long id);// Dùng interface projection
 	 
 	// Hoặc dùng trong query methods
-	    @Query("select u.name as name, u.totalPeople as totalPeople,u.totalBed as totalBed  ,u.price as price from RoomEntity u ")
+	 @Query("select u.name as name, u.totalPeople as totalPeople,u.totalBed as totalBed  ,u.price as price from RoomEntity u ")
 	 List<DetailRoom> findDetailRoooms();
 }

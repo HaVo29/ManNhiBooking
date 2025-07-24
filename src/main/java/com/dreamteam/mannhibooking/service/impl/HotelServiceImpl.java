@@ -34,6 +34,7 @@ public class HotelServiceImpl implements HotelService {
     private ModelMapper modelMapper;
 
 	@Override
+	@Transactional(rollbackFor = ModelNotFoundException.class)
 	public HotelDTO update(Long id,HotelDTO hotelDTO) {
 		
 		HotelEntity hotelEntity = hotelRepository.findById(id)
@@ -55,6 +56,11 @@ public class HotelServiceImpl implements HotelService {
 		hotelEntity.setDisplayFlag(hotelDTO.getDisplayFlag());
 		 // Lưu hoặc cập nhật đối tượng vào cơ sở dữ liệu
 		HotelEntity updateEntity = hotelRepository.save(hotelEntity);
+		
+		Long id1 = (long) 4;
+		
+		HotelEntity hotelEntity1 = hotelRepository.findById(id1)
+               .orElseThrow(() -> new ModelNotFoundException("HotelRepository not found with id: " + id));
 
 		return modelMapper.map(updateEntity, HotelDTO.class);
 	}

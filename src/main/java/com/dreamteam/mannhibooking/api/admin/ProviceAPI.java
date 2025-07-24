@@ -59,5 +59,7 @@ public class ProviceAPI {
 	 * @DeleteMapping(value = "/new") public void deleteNew(@RequestBody long[] ids)
 	 * { proviceService.delete(ids); }
 	 */
+	
+	///test
 
 }
