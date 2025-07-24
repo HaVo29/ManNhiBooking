@@ -49,6 +49,7 @@ public class HotelController {
 	
 	@GetMapping(value = "/{id}")
 	public HotelDTO getHotelbyID(@PathVariable("id") long id){
+		// commentline
 		return hotelService.getHotelById(id);
 	}
 }
